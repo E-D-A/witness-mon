@@ -76,7 +76,7 @@ do
     result=$(ssh -oBatchMode=Yes -oConnectTimeout=3 $witness_node cat /tmp/status)
     # Exit if the status is OK
     if [[ "$result" = "OK" ]]; then
-    	echo $(date) "Status OK."
+      echo $(date) "Status OK."
       break
     # The witness node returned a BAD state. Exit the loop to disable the witness
     elif [[ "$result" = "BAD" ]]; then
@@ -84,7 +84,7 @@ do
       status=0
       break
     else
-    	echo $(date) "Retry SSH..." >> $logpath
+      echo $(date) "Retry SSH..." >> $logpath
       # Sleep between retries to make sure it is not a temporary issue
       sleep 15
     fi;
