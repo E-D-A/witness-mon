@@ -19,9 +19,12 @@ A [STEEM](https://github.com/steemit/steem) witness monitoring system to help pr
 
 * nc (netcat) - The Monitoring Node is using netcat to test Internet connectivity. I believe `nc` is installed by default in many distributions.
 
+
+
 ## Installation & Usage
 
 ### Witness Node
+Default settings are for Steem-in-a-box:
 * Make sure the requirements are met above.
 * Place `nodecheck.sh` in the `steem-docker` folder.
 * Make executable with `chmod +x nodecheck.sh`
@@ -34,5 +37,7 @@ A [STEEM](https://github.com/steemit/steem) witness monitoring system to help pr
 * Make executable with `chmod +x remotecheck.sh`
 * Adjust settings in the script's `#### CONFIGURATION SECTION ####`. Important are the SSH connection string and the Conductor command line.
 * When running `remotecheck.sh`, set the UNLOCK variable with the passphrase to unlock the wallet used by Conductor. For example, `UNLOCK=PHASSPHRASE ./remotecheck.sh`
+
+#### By default, both scripts have this line `TESTING_MODE_ON=YES` in the `#### CONFIGURATION SECTION ####`. It will force the scripts in a test mode with all witness actions disabled. Comment that line to go live.
 
 #### Utilise `systemd` or something similar to make both scripts persistent, to have them startup at boot.
