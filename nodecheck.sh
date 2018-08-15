@@ -36,41 +36,41 @@ count=0
 while [ $count -lt 3 ];
 do
   # Store the witness logs
-	last_state=$($check_log)
+  last_state=$($check_log)
   # Sleep for at least 3 blocks and check the logs again
-	sleep 12
-	current_state=$($check_log)
+  sleep 12
+  current_state=$($check_log)
   # Compare the logs. The logs should not be the same and they should include: handle_block...
-	if [[ "$last_state" != "$current_state" ]] && [[ "$current_state" = *"handle_block"* ]]; then
-		echo "All OK."
+  if [[ "$last_state" != "$current_state" ]] && [[ "$current_state" = *"handle_block"* ]]; then
+  echo "All OK."
     # The /tmp/status file will be checked by the remote monitor
-		echo "OK" > /tmp/status
+    echo "OK" > /tmp/status
     # Wait 60 seconds until next iteration
-		sleep 60
+    sleep 60
     # Reset the counter, in case we had previous temporary failures
-		count=0
-	else
+    count=0
+  else
     # Increase the counter with 1
-		let "count = count + 1"
-		echo "No processed blocks. Count value: $count. Stopping..."
+    let "count = count + 1"
+    echo "No processed blocks. Count value: $count. Stopping..."
     # Stop and start the witness.
     if [[ "$TESTING_MODE_ON" != "YES" ]]; then
       $witness_stop
     else
       echo "*** THIS WAS A TEST ONLY ***"
     fi;
-		echo "Stopped!"
-		sleep 10
-		echo "Starting..."
+    echo "Stopped!"
+    sleep 10
+    echo "Starting..."
     if [[ "$TESTING_MODE_ON" != "YES" ]]; then
       $witness_start
     else
       echo "*** THIS WAS A TEST ONLY ***"
     fi;
-		echo "Started!"
+    echo "Started!"
     # Leave some time for the node to catch up after the startup
-		sleep 60
-	fi;
+    sleep 60
+  fi;
 done
 
 # Restart didn't help. Set witness status to BAD.
