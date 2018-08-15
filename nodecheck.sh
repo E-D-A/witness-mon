@@ -2,6 +2,10 @@
 
 #### CONFIGURATION SECTION ####
 
+# Keep this line for testing without the action to restart the witness
+# Comment the line for live use
+TESTING_MODE_ON=YES
+
 # Command to retrieve witness logs
 check_log="docker logs --tail 20 witness"
 
@@ -50,11 +54,19 @@ do
 		let "count = count + 1"
 		echo "No processed blocks. Count value: $count. Stopping..."
     # Stop and start the witness.
-    $witness_stop
+    if [[ "$TESTING_MODE_ON" != "YES" ]]; then
+      $witness_stop
+    else
+      echo "*** THIS WAS A TEST ONLY ***"
+    fi;
 		echo "Stopped!"
 		sleep 10
 		echo "Starting..."
-    $witness_start
+    if [[ "$TESTING_MODE_ON" != "YES" ]]; then
+      $witness_start
+    else
+      echo "*** THIS WAS A TEST ONLY ***"
+    fi;
 		echo "Started!"
     # Leave some time for the node to catch up after the startup
 		sleep 60

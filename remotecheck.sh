@@ -2,6 +2,10 @@
 
 #### CONFIGURATION SECTION ####
 
+# Keep this line for testing without the action to disable the witness
+# Comment the line for live use.
+TESTING_MODE_ON=YES
+
 # SSH connection string for Witness Node
 witness_node=USER@IP-ADDRESS
 
@@ -101,7 +105,11 @@ do
   if [ $status = 0 ]; then
     echo $(date) "disable witness" >> $logpath
     # Disable the witness.
-    $manager_bin
+    if [[ "$TESTING_MODE_ON" != "YES" ]]; then
+      $manager_bin
+    else
+      echo $(date) "*** THIS WAS A TEST ONLY ***" >> $logpath
+    fi;
 
     # Send email notification that witness is disabled
     # Only send email if smtp_bin is set
