@@ -42,7 +42,7 @@ do
   current_state=$($check_log)
   # Compare the logs. The logs should not be the same and they should include: handle_block...
   if [[ "$last_state" != "$current_state" ]] && [[ "$current_state" = *"handle_block"* ]]; then
-  echo "All OK."
+    echo "All OK."
     # The /tmp/status file will be checked by the remote monitor
     echo "OK" > /tmp/status
     # Wait 60 seconds until next iteration
