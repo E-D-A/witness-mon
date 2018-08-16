@@ -9,7 +9,7 @@ A [STEEM](https://github.com/steemit/steem) witness monitoring system to help pr
 
 ### Requirements - Witness Node Specific
 
-* The default settings for the Witness Node script (nodecheck.sh) is compatible with the [Steem-in-a-box](https://github.com/Someguy123/steem-docker) installation, but can easily be adjust in the script's `#### CONFIGURATION SECTION ####`.
+* The default settings for the Witness Node script (nodecheck.sh) is compatible with the [Steem-in-a-box](https://github.com/Someguy123/steem-docker) installation, but can easily be adjusted in the script's `#### CONFIGURATION SECTION ####`.
 
 ### Requirements - Monitoring Node Specific
 
