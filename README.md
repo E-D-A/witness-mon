@@ -1,5 +1,5 @@
 # Witness-Mon
-A [STEEM](https://github.com/steemit/steem) witness monitoring system to help prevent missed blocks. The system consist of one script for the witness node and one script for a remote monitoring node.
+A [STEEM](https://github.com/steemit/steem) witness monitoring system to help prevent missed blocks. A system that parses the witness log, verifies normal operation and automatically disables the witness in case of detected errors. The system consist of one script for the witness node and one script for a remote monitoring node.
 
 ## Requirements
 * This system has been tested in Ubuntu 16.04. But as it is all bash scripting it is safe to assume it works well in other environments.
